@@ -1,0 +1,119 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>P02: Se&ntilde;ales en Tiempo Cont&iacute;nuo</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-31"><meta name="DC.source" content="ASySPrac02JuanGarcia.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>P02: Se&ntilde;ales en Tiempo Cont&iacute;nuo</h1><!--introduction--><p><img vspace="5" hspace="5" src="UPIITA.PNG" alt=""> </p><p><b>UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIER&Iacute;A Y TECNOLOG&Iacute;AS AVANZADAS</b></p><p><b>An&aacute;lisis de Se&ntilde;ales y Sistemas</b></p><p>Autor: Garc&iacute;a Sandoval Juan Jes&uacute;s 2MV1</p><p>Profesor: Dr Rafael Mart&iacute;nez Mart&iacute;nez</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Objetivos</a></li><li><a href="#2">Introducci&oacute;n</a></li><li><a href="#3">1</a></li></ul></div><h2>Objetivos<a name="1"></a></h2><p>Como objetivos principales de la pr&aacute;ctica se pretende implementar la manipulaci&oacute;n b&aacute;sica de MATLAB, as&iacute; como la graficaci&oacute;n de se&ntilde;ales reales y complejas continuas, la transformaci&oacute;n de se&ntilde;ales continuas (escalamientos y traslaciones) y el c&aacute;lculo de energ&iacute;a y potencia de se&ntilde;ales continuas</p><h2>Introducci&oacute;n<a name="2"></a></h2><p>En la presente pr&aacute;ctica se desarrollar&aacute; una p&aacute;gina web, en lenguaje html utilizando MATLAB.</p><p>MATLAB es un software matem&aacute;tico desarrollado por MathWorks y su nombre proviene de la Abreviaci&oacute;n de MATrix LABoratory.</p><p>MATLAB surgi&oacute; a partir que Cleve Moler, co-fundador de MathWorks, matem&aacute;tico estadounidense y programador de ordenador que se especializa en an&aacute;lisis num&eacute;rico, desarroll&oacute; un paquete de inform&aacute;tica num&eacute;rico, para dar su alumnado en la Universidad de Nuevo M&eacute;xico, surgiendo en 1984 la primera versi&oacute;n estable del software.</p><p>MATLAB implementa un lenguaje de programaci&oacute;n propio (lenguaje M) para desarrollar aplicaciones y realizar c&aacute;lculos de an&aacute;lisis num&eacute;rico.</p><p>MATLAB es un software muy &uacute;til para la resoluci&oacute;n de problemas matem&aacute;ticos, sin embargo exicten otras alternativas muy similares a MATLAB, po ejemplo <a href="https://www.gnu.org/software/octave/">Octave</a> que se considera como la versi&oacute;n libre de MATLAB, <a href="https://www.maplesoft.com/products/maple/">Maple</a> que es una alternativa muy empleada, y por parte de Wolfram est&aacute; <a href="https://www.wolfram.com/mathematica/">Mathematica</a> y <a href="https://www.wolframalpha.com/">WolframAlpha</a> esta &uacute;ltima es una plataforma en linea que carece de c&oacute;digo riguroso por lo que es muy senillo de usar, pero tambi&eacute;n carece de caracter&iacute;sticas como MATLAB o Mathematica.</p><h2>1<a name="3"></a></h2><p>Se cre&oacute; una funci&oacute;n llamada fun1 la cual recibe dos parametros <img src="ASySPrac02JuanGarcia_eq08589834809570054062.png" alt="$\omega$"> y <img src="ASySPrac02JuanGarcia_eq05508344529756732484.png" alt="$a$"> para entonces regesar la evaluaci&oacute;n <img src="ASySPrac02JuanGarcia_eq02558949450631151249.png" alt="$F(\omega)=\frac{a}{a^2+\omega^2}$"></p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% P02: Señales en Tiempo Contínuo
+% 
+% <<UPIITA.PNG>>
+%
+% *UNIDAD PROFESIONAL INTERDISCIPLINARIA EN INGENIERÍA Y TECNOLOGÍAS AVANZADAS* 
+% 
+% *Análisis de Señales y Sistemas*
+%
+% Autor: García Sandoval Juan Jesús 2MV1
+%
+% Profesor: Dr Rafael Martínez Martínez
+%
+%% Objetivos
+% Como objetivos principales de la práctica se pretende implementar la manipulación básica de MATLAB, 
+% así como la graficación de señales reales y complejas continuas, la transformación de señales continuas 
+% (escalamientos y traslaciones) y el cálculo de energía y potencia de señales continuas
+%% Introducción
+%
+% En la presente práctica se desarrollará una página web, en lenguaje html utilizando MATLAB.
+% 
+% MATLAB es un software matemático desarrollado por MathWorks y su nombre proviene de
+% la Abreviación de MATrix LABoratory. 
+%
+% MATLAB surgió a partir que Cleve Moler, co-fundador de MathWorks, matemático estadounidense y 
+% programador de ordenador que se especializa en análisis numérico, desarrolló 
+% un paquete de informática numérico, para dar su alumnado en la Universidad de 
+% Nuevo México, surgiendo en 1984 la primera versión estable del software.
+%
+% MATLAB implementa un lenguaje de programación propio (lenguaje M) para
+% desarrollar aplicaciones y realizar cálculos de análisis numérico.
+%
+% MATLAB es un software muy útil para la resolución de problemas
+% matemáticos, sin embargo exicten otras alternativas muy similares a
+% MATLAB, po ejemplo <https://www.gnu.org/software/octave/ Octave> que se
+% considera como la versión libre de MATLAB,
+% <https://www.maplesoft.com/products/maple/ Maple> que es una alternativa
+% muy empleada, y por parte de Wolfram está
+% <https://www.wolfram.com/mathematica/ Mathematica> y
+% <https://www.wolframalpha.com/ WolframAlpha> esta última es una
+% plataforma en linea que carece de código riguroso por lo que es muy
+% senillo de usar, pero también carece de características como MATLAB o
+% Mathematica.
+%
+%% 1
+%
+% Se creó una función llamada fun1 la cual recibe dos parametros $\omega$ y $a$ 
+% para entonces regesar la evaluación $F(\omega)=\frac{a}{a^2+\omega^2}$
+##### SOURCE END #####
+--></body></html>
