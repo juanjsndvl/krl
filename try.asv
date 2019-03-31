@@ -1,0 +1,8 @@
+%% Cameroid
+%
+%
+%% Something like that
+ x=1;
+% 
+%$$\int_a^bxe^{-x}dx,\;\;\int_0^2xe^{-x}dx,\;\;\int_0^\infty xe^{-x}dx$$
+% 
